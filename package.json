@@ -2,7 +2,7 @@
   "name": "next-firebase-starter",
   "private": true,
   "version": "1.0.0",
-  "author": "Keana Cobarde",
+  "author": "E22 and E24",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
