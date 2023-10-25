@@ -21,6 +21,8 @@ body {
   background-color: #BEAA78;
 }
 
-.navbar {
-  background-color: #FFE5A0;
+#navbar {
+  background-color: #FFE5A0 !important;
+  color: black !important;
 }
+

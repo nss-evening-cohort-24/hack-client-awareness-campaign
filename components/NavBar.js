@@ -8,10 +8,10 @@ import { signOut } from '../utils/auth';
 
 export default function NavBar() {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+    <Navbar collapseOnSelect expand="lg" id="navbar" bg="light" variant="light">
       <Container>
         <Link passHref href="/">
-          <Navbar.Brand>BEAWARE.ORG</Navbar.Brand>
+          <Navbar.Brand>AWARENESS.ORG</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
