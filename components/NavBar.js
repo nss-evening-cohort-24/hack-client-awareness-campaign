@@ -26,9 +26,9 @@ export default function NavBar() {
             <Link passHref href="/">
               <Nav.Link>Start a Campaign</Nav.Link>
             </Link>
-            <Button variant="outline-secondary" onClick={signOut}>Sign Out</Button>
           </Nav>
         </Navbar.Collapse>
+        <Button variant="outline-secondary" onClick={signOut}>Sign Out</Button>
       </Container>
     </Navbar>
   );
