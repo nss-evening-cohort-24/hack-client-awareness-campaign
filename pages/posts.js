@@ -1,14 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { getPosts } from '../api/fbPostData';
-import { useAuth } from '../utils/context/authContext';
+// import { useAuth } from '../utils/context/authContext';
 import PostCard from '../components/PostCard';
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   const getThePosts = () => {
-    getPosts(user.uid).then(setPosts);
+    getPosts().then(setPosts);
   };
 
   useEffect(() => {
