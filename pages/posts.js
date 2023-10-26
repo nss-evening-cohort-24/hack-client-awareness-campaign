@@ -19,9 +19,9 @@ export default function Posts() {
   return (
     <div>
       <div className="text-center my-4">
-        <h1> Posts </h1>
+        <h1> POSTS </h1>
         <div className="d-flex flex-wrap">
-          {posts.map((post) => <PostCard postObj={post} key={post.firebaseKey} />)}
+          {posts.map((post) => <PostCard postObj={post} key={post.firebaseKey} onUpdate={getThePosts} />)}
         </div>
       </div>
     </div>

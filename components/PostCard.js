@@ -3,11 +3,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import Link from 'next/link';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
+import { deletePost } from '../api/fbPostData';
 
-export default function PostCard({ postObj }) {
+export default function PostCard({ postObj, onUpdate }) {
   const { user } = useAuth();
+
+  const deleteThisPost = () => {
+    if (window.confirm(`Delete ${postObj.name}?`)) {
+      deletePost(postObj.firebaseKey).then(() => onUpdate());
+    }
+  };
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
@@ -16,7 +23,11 @@ export default function PostCard({ postObj }) {
         <Card.Title>{postObj.name}</Card.Title>
         {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
         <p>{postObj.description}</p>
-        {user.uid === postObj.uid ? 'you can delete this' : 'you cannot delete this'}
+        {user.uid === postObj.uid ? (
+          <Button variant="danger" onClick={deleteThisPost} className="m-2">
+            DELETE
+          </Button>
+        ) : 'you cannot delete this'}
       </Card.Body>
     </Card>
   );
@@ -30,4 +41,5 @@ PostCard.propTypes = {
     name: PropTypes.string,
     description: PropTypes.string,
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
