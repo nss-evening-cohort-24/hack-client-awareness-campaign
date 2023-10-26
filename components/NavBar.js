@@ -23,7 +23,7 @@ export default function NavBar() {
             <Link passHref href="/posts">
               <Nav.Link>Campaigns</Nav.Link>
             </Link>
-            <Link passHref href="/">
+            <Link passHref href="/posts/new">
               <Nav.Link>Start a Campaign</Nav.Link>
             </Link>
           </Nav>

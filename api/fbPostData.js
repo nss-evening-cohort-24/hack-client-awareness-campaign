@@ -20,7 +20,7 @@ const getPosts = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const createPosts = (payload) => new Promise((resolve, reject) => {
+const createPost = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/posts.json`, {
     method: 'POST',
     headers: {
@@ -80,5 +80,5 @@ const searchPosts = (searchValue, uid) => new Promise((resolve, reject) => {
 });
 
 export {
-  getPosts, createPosts, updatePost, deletePost, getSinglePost, searchPosts,
+  getPosts, createPost, updatePost, deletePost, getSinglePost, searchPosts,
 };
