@@ -13,14 +13,14 @@ export default function Posts() {
 
   useEffect(() => {
     getThePosts();
-  });
+  }, []);
 
   return (
     <div>
       <div className="text-center my-4">
         <h1> Posts </h1>
         <div className="d-flex flex-wrap">
-          {posts.map((post) => <PostCard postObj={post} onUpdate={getThePosts} key={post.firebaseKey} />)}
+          {posts.map((post) => <PostCard postObj={post} key={post.firebaseKey} />)}
         </div>
       </div>
     </div>
