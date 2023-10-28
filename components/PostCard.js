@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import PropTypes from 'prop-types';
-// import Link from 'next/link';
+import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { deletePost } from '../api/fbPostData';
@@ -23,9 +23,14 @@ export default function PostCard({ postObj, onUpdate }) {
         {postObj.description}
       </p>
       <div className="buttons">{user.uid === postObj.uid ? (
-        <Button variant="danger" onClick={deleteThisPost} className="m-2">
-          DELETE
-        </Button>
+        <>
+          <Link href={`/posts/edit/${postObj.firebaseKey}`} passHref>
+            <Button variant="info">EDIT</Button>
+          </Link>
+          <Button variant="danger" onClick={deleteThisPost} className="m-2">
+            DELETE
+          </Button>
+        </>
       ) : ''}
       </div>
       <div className="go-corner">
