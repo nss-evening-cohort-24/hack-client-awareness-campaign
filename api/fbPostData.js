@@ -59,7 +59,7 @@ const updatePost = (payload) => new Promise((resolve, reject) => {
 });
 
 const getSinglePost = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/post/${firebaseKey}.json`, {
+  fetch(`${endpoint}/posts/${firebaseKey}.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

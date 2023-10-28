@@ -7,6 +7,7 @@ export default function EditPost() {
   const [editPost, setPost] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
+  console.warn(editPost);
 
   useEffect(() => {
     getSinglePost(firebaseKey).then(setPost);
