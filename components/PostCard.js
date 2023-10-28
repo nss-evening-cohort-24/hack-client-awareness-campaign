@@ -21,7 +21,6 @@ export default function PostCard({ postObj, onUpdate }) {
       <Card.Img variant="top" src={postObj.image} alt={postObj.name} style={{ height: '450px' }} />
       <Card.Body>
         <Card.Title>{postObj.name}</Card.Title>
-        {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
         <p>{postObj.description}</p>
         {user.uid === postObj.uid ? (
           <Button variant="danger" onClick={deleteThisPost} className="m-2">
