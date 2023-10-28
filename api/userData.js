@@ -1,6 +1,10 @@
+import { clientCredentials } from '../utils/client';
+
+const dbUrl = clientCredentials.databaseURL;
+
 const getAllUsers = async () => {
   try {
-    const response = await fetch('/users', {
+    const response = await fetch(`${dbUrl}/users`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -20,7 +24,7 @@ const getAllUsers = async () => {
 
 const getUserById = async (id) => {
   try {
-    const response = await fetch(`/api/users/${id}`, {
+    const response = await fetch(`${dbUrl}/api/users/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -38,7 +42,21 @@ const getUserById = async (id) => {
   }
 };
 
+const getUserIdFromUid = (uid) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/uservalidate/${uid}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve((data)))
+    .catch(reject);
+});
+
 export {
   getAllUsers,
   getUserById,
+  getUserIdFromUid,
 };

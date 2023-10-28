@@ -1,6 +1,10 @@
+import { clientCredentials } from '../utils/client';
+
+const dbUrl = clientCredentials.databaseURL;
+
 const associateCategoryWithPost = async (postId, categoryId) => {
   try {
-    const response = await fetch(`/api/posts/${postId}/categories/${categoryId}`, {
+    const response = await fetch(`${dbUrl}/api/posts/${postId}/categories/${categoryId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -20,7 +24,7 @@ const associateCategoryWithPost = async (postId, categoryId) => {
 
 const dissociateCategoryFromPost = async (postId, categoryId) => {
   try {
-    const response = await fetch(`/api/posts/${postId}/categories/${categoryId}`, {
+    const response = await fetch(`${dbUrl}/api/posts/${postId}/categories/${categoryId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
