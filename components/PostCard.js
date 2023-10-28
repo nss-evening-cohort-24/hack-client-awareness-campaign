@@ -4,12 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
-import { useAuth } from '../utils/context/authContext';
 import { deletePost } from '../api/fbPostData';
 
-export default function PostCard({ postObj, onUpdate }) {
-  const { user } = useAuth();
-
+export default function PostCard({ postObj, userIdent, onUpdate }) {
   const deleteThisPost = () => {
     if (window.confirm(`Delete ${postObj.postName}?`)) {
       deletePost(postObj.id).then(() => onUpdate());
@@ -22,7 +19,7 @@ export default function PostCard({ postObj, onUpdate }) {
       <p className="small-desc">
         {postObj.description}
       </p>
-      <div className="buttons">{user.uid === postObj.id ? (
+      <div className="buttons">{userIdent === postObj.id ? (
         <>
           <Link href={`/posts/edit/${postObj.id}`} passHref>
             <Button variant="info">EDIT</Button>
@@ -49,4 +46,5 @@ PostCard.propTypes = {
     description: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
+  userIdent: PropTypes.number.isRequired,
 };
