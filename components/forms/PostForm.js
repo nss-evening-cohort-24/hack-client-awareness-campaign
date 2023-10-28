@@ -5,11 +5,10 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
-import { createPost, updatePost } from '../../api/fbPostData';
+import { createPost, updatePost } from '../../api/postData';
 
 const initialState = {
   postName: '',
-  image: '',
   description: '',
 };
 
@@ -19,7 +18,7 @@ function PostForm({ obj }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (obj.firebaseKey) setFormInput(obj);
+    if (obj.id) setFormInput(obj);
   }, [obj, user]);
 
   const handleChange = (e) => {
@@ -32,13 +31,13 @@ function PostForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.firebaseKey) {
+    if (obj.id) {
       // TODO: add route for update
       updatePost(formInput).then(() => router.push('/posts/post'));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createPost(payload).then(({ name }) => {
-        const patchPayload = { firebaseKey: name };
+        const patchPayload = { id: name };
         updatePost(patchPayload).then(() => {
           // TODO: add route for create
           router.push('/posts/post');
@@ -49,7 +48,7 @@ function PostForm({ obj }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Campaign</h2>
+      <h2 className="text-white mt-5">{obj.id ? 'Update' : 'Create'} Campaign</h2>
 
       <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3">
         <Form.Control
@@ -57,17 +56,6 @@ function PostForm({ obj }) {
           placeholder="Name"
           name="postName"
           value={formInput.postName}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-
-      <FloatingLabel controlId="floatingInput1" label="Image" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Image"
-          name="image"
-          value={formInput.imageURL}
           onChange={handleChange}
           required
         />
@@ -84,7 +72,7 @@ function PostForm({ obj }) {
         />
       </FloatingLabel>
 
-      <Button type="submit" variant="outline-secondary">{obj.firebaseKey ? 'Update' : 'Create'} Campaign</Button>
+      <Button type="submit" variant="outline-secondary">{obj.id ? 'Update' : 'Create'} Campaign</Button>
     </Form>
   );
 }
@@ -93,7 +81,7 @@ PostForm.propTypes = {
   obj: PropTypes.shape({
     postName: PropTypes.string,
     description: PropTypes.string,
-    firebaseKey: PropTypes.string,
+    id: PropTypes.string,
   }),
 };
 
