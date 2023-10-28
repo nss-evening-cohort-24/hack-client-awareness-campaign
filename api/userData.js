@@ -4,7 +4,7 @@ const dbUrl = clientCredentials.databaseURL;
 
 const getAllUsers = async () => {
   try {
-    const response = await fetch('/users', {
+    const response = await fetch(`${dbUrl}/users`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ const getAllUsers = async () => {
 
 const getUserById = async (id) => {
   try {
-    const response = await fetch(`/api/users/${id}`, {
+    const response = await fetch(`${dbUrl}/api/users/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

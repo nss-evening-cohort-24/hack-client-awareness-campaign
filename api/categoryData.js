@@ -1,6 +1,10 @@
+import { clientCredentials } from '../utils/client';
+
+const dbUrl = clientCredentials.databaseURL;
+
 const createCategory = async (categoryData) => {
   try {
-    const response = await fetch('/api/category', {
+    const response = await fetch(`${dbUrl}/api/category`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -21,7 +25,7 @@ const createCategory = async (categoryData) => {
 
 const getAllCategories = async () => {
   try {
-    const response = await fetch('/api/categories', {
+    const response = await fetch(`${dbUrl}/api/categories`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +45,7 @@ const getAllCategories = async () => {
 
 const getCategoryById = async (id) => {
   try {
-    const response = await fetch(`/api/categories/${id}`, {
+    const response = await fetch(`${dbUrl}/api/categories/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -61,7 +65,7 @@ const getCategoryById = async (id) => {
 
 const updateCategory = async (id, updatedCategoryData) => {
   try {
-    const response = await fetch(`/api/categories/${id}`, {
+    const response = await fetch(`${dbUrl}/api/categories/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -81,7 +85,7 @@ const updateCategory = async (id, updatedCategoryData) => {
 
 const deleteCategory = async (id) => {
   try {
-    const response = await fetch(`/api/categories/${id}`, {
+    const response = await fetch(`${dbUrl}/api/categories/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
