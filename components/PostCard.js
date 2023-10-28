@@ -42,7 +42,7 @@ export default function PostCard({ postObj, onUpdate }) {
 
 PostCard.propTypes = {
   postObj: PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.number.isRequired,
     uid: PropTypes.string,
     image: PropTypes.string,
     postName: PropTypes.string,

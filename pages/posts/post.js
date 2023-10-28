@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import { getAllPosts } from '../../api/postData';
 import PostCard from '../../components/PostCard';
+import { getAllPosts } from '../../api/postData';
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);
