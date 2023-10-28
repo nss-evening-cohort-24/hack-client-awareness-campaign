@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import PostForm from '../../components/forms/PostForm';
-import { getUserIdFromUid } from '../../api/userData';
+import CategoryForm from '../../components/forms/CategoryForm';
+import { getUserById } from '../../api/userData';
 import { useAuth } from '../../utils/context/authContext';
 
-export default function CreatePost() {
+export default function CreateCategory() {
   const { user } = useAuth();
   const [userId, setUserId] = useState(0);
 
   const getUserId = () => {
-    getUserIdFromUid(user.uid)?.then(setUserId);
+    getUserById(user.uid)?.then(setUserId);
   };
   useEffect(() => {
     getUserId();
   }, [user]);
-  return <PostForm userIdent={userId.id} />;
+  return <CategoryForm userIdent={userId} />;
 }

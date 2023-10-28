@@ -4,7 +4,7 @@ const dbUrl = 'https://localhost:7136';
 
 const getAllUsers = async () => {
   try {
-    const response = await fetch(`${dbUrl}/users`, {
+    const response = await fetch('https://localhost:7136/users', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

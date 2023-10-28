@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
-import { deletePost } from '../api/fbPostData';
+import { deletePost } from '../api/postData';
 
 export default function PostCard({ postObj, userIdent, onUpdate }) {
   const deleteThisPost = () => {
@@ -39,7 +39,7 @@ export default function PostCard({ postObj, userIdent, onUpdate }) {
 
 PostCard.propTypes = {
   postObj: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.number.isRequired,
     uid: PropTypes.string,
     image: PropTypes.string,
     postName: PropTypes.string,
