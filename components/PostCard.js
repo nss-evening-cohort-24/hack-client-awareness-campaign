@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
-import { deletePost } from '../api/fbPostData';
+import { deletePost } from '../api/postData';
 
 export default function PostCard({ postObj, onUpdate }) {
   const { user } = useAuth();
@@ -42,7 +42,6 @@ export default function PostCard({ postObj, onUpdate }) {
 
 PostCard.propTypes = {
   postObj: PropTypes.shape({
-    firebaseKey: PropTypes.string,
     id: PropTypes.number.isRequired,
     uid: PropTypes.string,
     image: PropTypes.string,
