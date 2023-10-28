@@ -71,14 +71,14 @@ body {
   position: relative;
   max-width: 300px;
   max-height: auto;
-  background-color: #f2f8f9;
+  background-color: #FFE5A0;
   border-radius: 10px;
   padding: 2em 1.2em;
   margin: 12px;
   text-decoration: none;
   z-index: 0;
   overflow: hidden;
-  background: linear-gradient(to bottom, #c3e6ec, #a7d1d9);
+  background: linear-gradient(to bottom, #FFE5A0, #a7d1d9);
   font-family: -apple-system, Arial, Helvetica, sans-serif;
 }
 
