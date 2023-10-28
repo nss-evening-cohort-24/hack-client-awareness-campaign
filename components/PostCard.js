@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import Link from 'next/link';
-import { Card, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { deletePost } from '../api/fbPostData';
 
@@ -11,25 +11,27 @@ export default function PostCard({ postObj, onUpdate }) {
   const { user } = useAuth();
 
   const deleteThisPost = () => {
-    if (window.confirm(`Delete ${postObj.name}?`)) {
+    if (window.confirm(`Delete ${postObj.postName}?`)) {
       deletePost(postObj.firebaseKey).then(() => onUpdate());
     }
   };
 
   return (
-    <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={postObj.image} alt={postObj.name} style={{ height: '450px' }} />
-      <Card.Body>
-        <Card.Title>{postObj.name}</Card.Title>
-        {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
-        <p>{postObj.description}</p>
-        {user.uid === postObj.uid ? (
-          <Button variant="danger" onClick={deleteThisPost} className="m-2">
-            DELETE
-          </Button>
-        ) : 'you cannot delete this'}
-      </Card.Body>
-    </Card>
+    <div className="card">
+      <p className="card-title">{postObj.postName}</p>
+      <p className="small-desc">
+        {postObj.description}
+      </p>
+      <div className="buttons">{user.uid === postObj.uid ? (
+        <Button variant="danger" onClick={deleteThisPost} className="m-2">
+          DELETE
+        </Button>
+      ) : 'you cannot delete this'}
+      </div>
+      <div className="go-corner">
+        <div className="go-arrow">→</div>
+      </div>
+    </div>
   );
 }
 
@@ -38,7 +40,7 @@ PostCard.propTypes = {
     firebaseKey: PropTypes.string,
     uid: PropTypes.string,
     image: PropTypes.string,
-    name: PropTypes.string,
+    postName: PropTypes.string,
     description: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
