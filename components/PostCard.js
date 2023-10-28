@@ -26,7 +26,7 @@ export default function PostCard({ postObj, onUpdate }) {
         <Button variant="danger" onClick={deleteThisPost} className="m-2">
           DELETE
         </Button>
-      ) : 'you cannot delete this'}
+      ) : ''}
       </div>
       <div className="go-corner">
         <div className="go-arrow">→</div>
