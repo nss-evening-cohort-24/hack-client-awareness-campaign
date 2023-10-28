@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
-import { deletePost } from '../api/fbPostData';
+import { deletePost } from '../api/postData';
 
 export default function PostCard({ postObj, onUpdate }) {
   const { user } = useAuth();
 
   const deleteThisPost = () => {
     if (window.confirm(`Delete ${postObj.postName}?`)) {
-      deletePost(postObj.firebaseKey).then(() => onUpdate());
+      deletePost(postObj.id).then(() => onUpdate());
     }
   };
 
@@ -24,7 +24,7 @@ export default function PostCard({ postObj, onUpdate }) {
       </p>
       <div className="buttons">{user.uid === postObj.uid ? (
         <>
-          <Link href={`/posts/edit/${postObj.firebaseKey}`} passHref>
+          <Link href={`/posts/edit/${postObj.id}`} passHref>
             <Button variant="info">EDIT</Button>
           </Link>
           <Button variant="danger" onClick={deleteThisPost} className="m-2">
@@ -42,7 +42,7 @@ export default function PostCard({ postObj, onUpdate }) {
 
 PostCard.propTypes = {
   postObj: PropTypes.shape({
-    firebaseKey: PropTypes.string,
+    id: PropTypes.string,
     uid: PropTypes.string,
     image: PropTypes.string,
     postName: PropTypes.string,
