@@ -1,3 +1,7 @@
+import { clientCredentials } from '../utils/client';
+
+const dbUrl = clientCredentials.databaseURL;
+
 const getAllUsers = async () => {
   try {
     const response = await fetch('/users', {
@@ -38,7 +42,21 @@ const getUserById = async (id) => {
   }
 };
 
+const getUserIdFromUid = (uid) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/uservalidate/${uid}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve((data)))
+    .catch(reject);
+});
+
 export {
   getAllUsers,
   getUserById,
+  getUserIdFromUid,
 };
