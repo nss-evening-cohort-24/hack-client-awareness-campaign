@@ -2,18 +2,26 @@ import { clientCredentials } from '../utils/client';
 
 const dbUrl = clientCredentials.databaseURL;
 
-const getAllPosts = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/posts.json`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => resolve(Object.values((data))))
-    .catch(reject);
-});
+const getAllPosts = async () => {
+  try {
+    const response = await fetch('https://localhost:7136/posts', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Error fetching posts');
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error(`Error fetching posts: ${error.message}`);
+  }
+};
 
 const getSinglePost = (id) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/post/${id}`, {
