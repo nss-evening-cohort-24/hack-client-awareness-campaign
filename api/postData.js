@@ -1,9 +1,9 @@
-import { clientCredentials } from '../utils/client';
+// import { clientCredentials } from '../utils/client';
 
-const dbUrl = clientCredentials.databaseURL;
+const dbUrl = 'https://localhost:7136/';
 
 const getAllPosts = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/posts`, {
+  fetch(`${dbUrl}/posts.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

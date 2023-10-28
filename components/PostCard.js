@@ -22,7 +22,7 @@ export default function PostCard({ postObj, onUpdate }) {
       <p className="small-desc">
         {postObj.description}
       </p>
-      <div className="buttons">{user.uid === postObj.uid ? (
+      <div className="buttons">{user.uid === postObj.userId ? (
         <>
           <Link href={`/posts/edit/${postObj.id}`} passHref>
             <Button variant="info">EDIT</Button>
@@ -43,7 +43,7 @@ export default function PostCard({ postObj, onUpdate }) {
 PostCard.propTypes = {
   postObj: PropTypes.shape({
     id: PropTypes.number,
-    uid: PropTypes.string,
+    userId: PropTypes.string,
     image: PropTypes.string,
     postName: PropTypes.string,
     description: PropTypes.string,
