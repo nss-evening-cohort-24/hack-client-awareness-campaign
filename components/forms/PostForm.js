@@ -6,6 +6,8 @@ import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { createPost, updatePost } from '../../api/postData';
+import { associateCategoryWithPost } from '../../api/categoryPostData';
+import { getAllCategories } from '../../api/categoryData';
 
 const initialState = {
   postName: '',
@@ -14,12 +16,22 @@ const initialState = {
 
 function PostForm({ obj, userIdent }) {
   const [formInput, setFormInput] = useState(initialState);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
     if (obj.id) setFormInput(obj);
   }, [obj, user]);
+
+  useEffect(() => {
+    getAllCategories()
+      .then((data) => setCategories(data))
+      .catch((error) => {
+        console.error('Error fetching categories:', error);
+      });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,20 +41,51 @@ function PostForm({ obj, userIdent }) {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (obj.id) {
-      // TODO: add route for update
-      updatePost(formInput).then(() => router.push('/posts/post'));
+  const handleCategorySelection = (e) => {
+    // Handle category selection, e.g., update selectedCategories state
+    const categoryId = parseInt(e.target.value, 10);
+    // Ensure you get the category ID as an integer
+    if (e.target.checked) {
+      setSelectedCategories((prevCategories) => [...prevCategories, categoryId]);
     } else {
-      const payload = { ...formInput, userId: userIdent };
-      createPost(payload).then(({ name }) => {
-        const patchPayload = { id: name };
-        updatePost(patchPayload).then(() => {
+      setSelectedCategories((prevCategories) => prevCategories.filter((id) => id !== categoryId));
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const payload = {
+      ...formInput,
+      userId: userIdent,
+    };
+
+    if (obj.id) {
+      // This is an existing post, so update it
+      updatePost(payload).then(() => router.push('/posts/post'));
+    } else if (userIdent !== undefined) {
+      // This is a new post, so create it
+      createPost(payload)
+        .then((response) => {
+          console.log(response); // Log the response here to inspect its structure
+          // Associate selected categories with the new post
+          const postId = response.id; // Assuming the ID of the newly created post is returned
+          return Promise.all(
+            selectedCategories.map((categoryId) => associateCategoryWithPost(postId, categoryId)),
+          );
+        })
+        .then(() => {
           // TODO: add route for create
           router.push('/posts/post');
+        })
+        .catch((error) => {
+          // Handle error associating categories
+          console.error('Error associating categories with the post:', error);
         });
-      });
+    } else {
+      // Handle the case where userIdent is undefined, such as displaying an error or redirecting.
+      // You might also want to log this case for debugging.
+      console.error('userIdent is undefined.');
     }
   };
 
@@ -71,6 +114,20 @@ function PostForm({ obj, userIdent }) {
           required
         />
       </FloatingLabel>
+
+      <div>
+        {categories.map((category) => (
+          <label key={category.id}>
+            <input
+              type="checkbox"
+              value={category.id}
+              checked={selectedCategories.includes(category.id)}
+              onChange={handleCategorySelection}
+            />
+            {category.categoryName}
+          </label>
+        ))}
+      </div>
 
       <Button type="submit" variant="outline-secondary">{obj.id ? 'Update' : 'Create'} Campaign</Button>
     </Form>
