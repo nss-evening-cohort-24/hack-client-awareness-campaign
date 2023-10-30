@@ -7,7 +7,6 @@ export default function EditPost() {
   const [editPost, setPost] = useState({});
   const router = useRouter();
   const { id } = router.query;
-  console.warn(editPost);
 
   useEffect(() => {
     getSinglePost(id).then(setPost);
