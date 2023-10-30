@@ -1,15 +1,11 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
-import { useAuth } from '../utils/context/authContext';
 import { deletePost } from '../api/postData';
 
-export default function PostCard({ postObj, onUpdate }) {
-  const { user } = useAuth();
-
+export default function PostCard({ postObj, onUpdate, userIdent }) {
   const deleteThisPost = () => {
     if (window.confirm(`Delete ${postObj.postName}?`)) {
       deletePost(postObj.id).then(() => onUpdate());
@@ -22,7 +18,7 @@ export default function PostCard({ postObj, onUpdate }) {
       <p className="small-desc">
         {postObj.description}
       </p>
-      <div className="buttons">{user.uid === postObj.uid ? (
+      <div className="buttons">{userIdent === postObj.userId ? (
         <>
           <Link href={`/posts/edit/${postObj.id}`} passHref>
             <Button variant="info">EDIT</Button>
@@ -43,10 +39,11 @@ export default function PostCard({ postObj, onUpdate }) {
 PostCard.propTypes = {
   postObj: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    uid: PropTypes.string,
+    userId: PropTypes.number,
     image: PropTypes.string,
     postName: PropTypes.string,
     description: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
+  userIdent: PropTypes.number.isRequired,
 };
