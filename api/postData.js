@@ -64,17 +64,24 @@ const updatePost = (payload, postId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const deletePost = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/post/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => resolve(data))
-    .catch(reject);
-});
+const deletePost = async (id) => {
+  try {
+    const response = await fetch(`${dbUrl}/posts/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Error deleting category');
+    }
+
+    return 'Post deleted successfully';
+  } catch (error) {
+    throw new Error(`Error deleting post: ${error.message}`);
+  }
+};
 
 export {
   getAllPosts,
