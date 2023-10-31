@@ -22,5 +22,6 @@ export default function CreatePost() {
   useEffect(() => {
     getUserId();
   }, [user]);
-  return <PostForm userIdent={userId.id} />;
+
+  return <PostForm userIdent={userId} />;
 }
