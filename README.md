@@ -7,10 +7,12 @@ The Awareness Campaign Creator Web App is a user-friendly platform designed to e
 
 ###How to use
 1. Sign In or Create an Account: Use your existing account or create a new one to get started.
+![signin](https://github.com/nss-evening-cohort-24/hack-client-awareness-campaign/assets/124316602/b5bd38d0-644e-4710-bb8b-9353b088a6ce)
 
 2. Create a New Campaign: Click on "Create Campaign" to start building your awareness campaign.
 
 3. Select the category your campaign falls under.
+![nav bar with start campign link](https://github.com/nss-evening-cohort-24/hack-client-awareness-campaign/assets/124316602/4dbeaac5-2d28-4d83-8782-e15a4e3a51fe)
 
 4. Share your campaign on social media.
 
@@ -20,3 +22,15 @@ https://www.figma.com/file/rjyp7PpVr2rQHrzdnP4Y7L/awareness-campaigns?type=desig
 https://dbdiagram.io/d/ERD-practice-63eec5c1296d97641d819c08
 
 ####Deployed site
+
+##### Tech and Frameworks
+- React js
+- Node.js
+- PgAdmin4
+- Bootstrap
+
+###### Contributors
+- https://github.com/mark-e-brewer
+- https://github.com/Snc1730
+- https://github.com/keanacobarde
+- https://github.com/GregM1992 
