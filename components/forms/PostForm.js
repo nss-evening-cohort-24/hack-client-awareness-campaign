@@ -67,7 +67,7 @@ function PostForm({ obj, userIdent }) {
       // This is a new post, so create it
       createPost(payload)
         .then((response) => {
-          console.log(response); // Log the response here to inspect its structure
+          console.warn(response); // Log the response here to inspect its structure
           // Associate selected categories with the new post
           const postId = response.id; // Assuming the ID of the newly created post is returned
           return Promise.all(
