@@ -29,7 +29,7 @@ export default function PostCard({ postObj, onUpdate, userIdent }) {
   return (
     <div className="card">
       <p className="card-title">{postObj.postName}</p>
-      {getCat.categories.map((cat) => <p className="small-dec"> {cat.categoryName} </p>)}
+      <div className="cat">{getCat.categories.map((cat) => <p className="small-dec"> {cat.categoryName} </p>)}</div>
       <p className="small-desc">
         {postObj.description}
       </p>
