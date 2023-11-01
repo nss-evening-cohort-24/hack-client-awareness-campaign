@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import { deletePost } from '../api/postData';
-import { fetchPostWithCategories } from '../api/categoryData';
 
 export default function PostCard({ postObj, onUpdate, userIdent }) {
   const deleteThisPost = () => {
@@ -13,23 +12,9 @@ export default function PostCard({ postObj, onUpdate, userIdent }) {
     }
   };
 
-  // Getting categories
-  const [getCat, setCat] = useState('');
-
-  // fetchPostWithCategories(postObj.id).then(setCat);
-
-  const getTheCategories = () => fetchPostWithCategories(postObj.id).then(setCat);
-
-  useEffect(() => {
-    getTheCategories();
-  }, [postObj]);
-
-  console.warn(getCat);
-
   return (
     <div className="card">
       <p className="card-title">{postObj.postName}</p>
-      <div className="cat">{getCat.categories.map((cat) => <p className="small-dec"> {cat.categoryName} </p>)}</div>
       <p className="small-desc">
         {postObj.description}
       </p>
