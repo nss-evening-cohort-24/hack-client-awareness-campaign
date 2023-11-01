@@ -104,39 +104,6 @@ const deleteCategory = async (id) => {
   }
 };
 
-// const cleanCircularReferences = (obj) => {
-//   const seen = new Map();
-
-//   const clean = (data) => {
-//     if (!data || typeof data !== 'object') {
-//       return data;
-//     }
-
-//     if (seen.has(data)) {
-//       return null; // Break circular references
-//     }
-
-//     seen.set(data, true);
-
-//     if (Array.isArray(data)) {
-//       return data.map(clean);
-//     }
-
-//     const cleanedData = {};
-//     for (const key in data) {
-//       if (data.hasOwnProperty(key)) {
-//         const value = clean(data[key]);
-//         if (value !== null) {
-//           cleanedData[key] = value;
-//         }
-//       }
-//     }
-//     return cleanedData;
-//   };
-
-//   return clean(obj);
-// };
-
 const fetchPostWithCategories = async (postId) => {
   try {
     const response = await fetch(`${dbUrl}/postwithcategories/${postId}`); // Replace with your actual endpoint URL
