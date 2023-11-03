@@ -64,5 +64,6 @@ PostCard.propTypes = {
 };
 
 PostCard.defaultProps = {
+  userIdent: undefined,
   userIdent: 0,
 };

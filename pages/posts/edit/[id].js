@@ -25,9 +25,19 @@ export default function EditPost() {
   };
 
   useEffect(() => {
-    getSinglePost(id).then(setPost);
+    console.log('ID Changed:', id);
+    getSinglePost(id)
+      .then((post) => {
+        console.log('Fetched Post:', post);
+        setPost(post);
+      })
+      .catch((error) => {
+        console.error('Error fetching post:', error);
+      });
   }, [id]);
 
+  // Use conditional rendering to ensure that PostForm is only rendered when editPost has data
+  return editPost.id ? <PostForm obj={editPost} /> : null;
   useEffect(() => {
     getUserId();
   // eslint-disable-next-line react-hooks/exhaustive-deps
