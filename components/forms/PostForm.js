@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
-import { useAuth } from '../../utils/context/authContext';
 import { createPost, updatePost } from '../../api/postData';
-import { associateCategoryWithPost } from '../../api/categoryPostData';
+import { associateCategoryWithPost, dissociateCategoryFromPost, fetchAssociatedCategoriesForPost } from '../../api/categoryPostData';
 import { getAllCategories } from '../../api/categoryData';
 
 const initialState = {
@@ -19,11 +18,20 @@ function PostForm({ obj, userIdent }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [categories, setCategories] = useState([]);
   const router = useRouter();
-  const { user } = useAuth();
 
   useEffect(() => {
-    if (obj.id) setFormInput(obj);
-  }, [obj, user]);
+    if (obj.id) {
+      setFormInput(obj);
+      fetchAssociatedCategoriesForPost(obj.id)
+        .then((data) => {
+          const associatedCategoryIds = data.map((category) => category.id);
+          setSelectedCategories(associatedCategoryIds);
+        })
+        .catch((error) => {
+          console.error('Error fetching associated categories:', error);
+        });
+    }
+  }, [obj]);
 
   useEffect(() => {
     getAllCategories()
@@ -41,11 +49,44 @@ function PostForm({ obj, userIdent }) {
     }));
   };
 
+  const updateCategoryAssociations = (postId, updatedCategories) => {
+    // This function will handle the association/dissociation logic for an existing post
+    // Call it when editing an existing post
+    const addCategories = updatedCategories.filter((categoryId) => !selectedCategories.includes(categoryId));
+    const removeCategories = selectedCategories.filter((categoryId) => !updatedCategories.includes(categoryId));
+
+    // Associate new categories
+    Promise.all(
+      addCategories.map((categoryId) => associateCategoryWithPost(postId, categoryId)),
+    )
+      .then(() =>
+        // Dissociate categories
+        // eslint-disable-next-line implicit-arrow-linebreak
+        Promise.all(
+          removeCategories.map((categoryId) => dissociateCategoryFromPost(postId, categoryId)),
+        ))
+      .then(() => {
+        // Update selected categories
+        setSelectedCategories(updatedCategories);
+      })
+      .catch((error) => {
+        console.error('Error updating category associations:', error);
+      });
+  };
+
   const handleCategorySelection = (e) => {
-    // Handle category selection, e.g., update selectedCategories state
     const categoryId = parseInt(e.target.value, 10);
     // Ensure you get the category ID as an integer
-    if (e.target.checked) {
+    if (e.target.checked && obj.id) {
+      // Add the category to the selection
+      const updatedCategories = [...selectedCategories, categoryId];
+      updateCategoryAssociations(obj.id, updatedCategories);
+    } else if (!e.target.checked && obj.id) {
+      // Remove the category from the selection
+      const updatedCategories = selectedCategories.filter((id) => id !== categoryId);
+      updateCategoryAssociations(obj.id, updatedCategories);
+    } else if (e.target.checked) {
+      // Handle category selection for new posts
       setSelectedCategories((prevCategories) => [...prevCategories, categoryId]);
     } else {
       setSelectedCategories((prevCategories) => prevCategories.filter((id) => id !== categoryId));
@@ -140,11 +181,12 @@ PostForm.propTypes = {
     description: PropTypes.string,
     id: PropTypes.number,
   }),
-  userIdent: PropTypes.number.isRequired,
+  userIdent: PropTypes.number,
 };
 
 PostForm.defaultProps = {
   obj: initialState,
+  userIdent: undefined,
 };
 
 export default PostForm;

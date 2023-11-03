@@ -45,5 +45,9 @@ PostCard.propTypes = {
     description: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
-  userIdent: PropTypes.number.isRequired,
+  userIdent: PropTypes.number,
+};
+
+PostCard.defaultProps = {
+  userIdent: undefined,
 };
