@@ -14,7 +14,7 @@ const initialState = {
   description: '',
 };
 
-function PostForm({ obj, userIdent }) {
+function PostForm({ obj, userIdent, postID }) {
   const [formInput, setFormInput] = useState(initialState);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -55,19 +55,20 @@ function PostForm({ obj, userIdent }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const payload = {
-      ...formInput,
-      userId: userIdent,
-    };
-
     if (obj.id) {
-      // This is an existing post, so update it
-      updatePost(payload).then(() => router.push('/posts/post'));
+      const payload = {
+        ...formInput,
+        userId: userIdent,
+        id: postID,
+      };
+      updatePost(payload, Number(postID)).then(() => router.push('/posts/post'));
     } else if (userIdent !== undefined) {
-      // This is a new post, so create it
+      const payload = {
+        ...formInput,
+        userId: userIdent,
+      };
       createPost(payload)
         .then((response) => {
-          console.log(response); // Log the response here to inspect its structure
           // Associate selected categories with the new post
           const postId = response.id; // Assuming the ID of the newly created post is returned
           return Promise.all(
@@ -139,12 +140,18 @@ PostForm.propTypes = {
     postName: PropTypes.string,
     description: PropTypes.string,
     id: PropTypes.number,
+    categories: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      categoryName: PropTypes.string,
+    })),
   }),
   userIdent: PropTypes.number.isRequired,
+  postID: PropTypes.number,
 };
 
 PostForm.defaultProps = {
   obj: initialState,
+  postID: 0,
 };
 
 export default PostForm;
