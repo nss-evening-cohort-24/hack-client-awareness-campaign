@@ -21,6 +21,7 @@ export default function CreatePost() {
 
   useEffect(() => {
     getUserId();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   return <PostForm userIdent={userId} />;
