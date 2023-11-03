@@ -1,3 +1,5 @@
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable no-restricted-syntax */
 // import { clientCredentials } from '../utils/client';
 
 const dbUrl = 'https://localhost:7136';
@@ -102,10 +104,27 @@ const deleteCategory = async (id) => {
   }
 };
 
+const fetchPostWithCategories = async (postId) => {
+  try {
+    const response = await fetch(`${dbUrl}/postwithcategories/${postId}`); // Replace with your actual endpoint URL
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data. Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
+
 export {
   createCategory,
   getAllCategories,
   getCategoryById,
   updateCategory,
   deleteCategory,
+  fetchPostWithCategories,
 };
