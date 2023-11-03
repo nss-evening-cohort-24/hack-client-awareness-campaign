@@ -187,7 +187,6 @@ PostForm.propTypes = {
     })),
   }),
   userIdent: PropTypes.number,
-  userIdent: PropTypes.number.isRequired,
   postID: PropTypes.number,
 };
 

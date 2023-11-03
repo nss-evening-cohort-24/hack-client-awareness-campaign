@@ -24,8 +24,6 @@ export default function PostCard({ postObj, onUpdate, userIdent }) {
     getTheCategories();
   }, [postObj]);
 
-  console.warn(getCat);
-
   return (
     <div className="card">
       <p className="card-title">{postObj.postName}</p>
@@ -65,5 +63,4 @@ PostCard.propTypes = {
 
 PostCard.defaultProps = {
   userIdent: undefined,
-  userIdent: 0,
 };

@@ -25,10 +25,13 @@ export default function EditPost() {
   };
 
   useEffect(() => {
-    console.log('ID Changed:', id);
+    getUserId();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
+  useEffect(() => {
     getSinglePost(id)
       .then((post) => {
-        console.log('Fetched Post:', post);
         setPost(post);
       })
       .catch((error) => {
@@ -37,13 +40,5 @@ export default function EditPost() {
   }, [id]);
 
   // Use conditional rendering to ensure that PostForm is only rendered when editPost has data
-  return editPost.id ? <PostForm obj={editPost} /> : null;
-  useEffect(() => {
-    getUserId();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
-
-  return (
-    <PostForm obj={editPost} userIdent={userId} postID={id} />
-  );
+  return editPost.id ? <PostForm obj={editPost} userIdent={userId} postID={id} /> : null;
 }

@@ -23,7 +23,7 @@ export default function Posts() {
     getThePosts();
     getUserUid();
   }, []);
-  posts.map((post) => console.warn(post));
+
   return (
     <div>
       <div className="text-center my-4">
