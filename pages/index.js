@@ -1,25 +1,20 @@
-import { Button } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
-import { useAuth } from '../utils/context/authContext';
+import HeroBanner from '../components/HeroBanner';
 
 function Home() {
-  const { user } = useAuth();
-
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Hello {user.displayName}! </h1>
-      <p>Click the button below to logout!</p>
-      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
-        Sign Out
-      </Button>
+    <div className="hero-div">
+      <HeroBanner
+        title="WELCOME..."
+        description="Join us in the journey towards a more aware world.
+
+      Our mission is to provide support, spread awareness, and create a community where individuals feel safe to share their stories, struggles, and triumphs. Together, we can make a difference by promoting understanding and empathy.
+
+      Explore our campaigns, resources, and stories from those who have faced the challenges of mental health head-on. Let's shatter the silence and stand together.
+
+      Join us on this journey. Your voice matters."
+        ctaText="Create a campaign"
+        ctaLink="http://localhost:3000/posts/new"
+      />
     </div>
   );
 }

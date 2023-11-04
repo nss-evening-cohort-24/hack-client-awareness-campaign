@@ -169,7 +169,6 @@ function PostForm({ obj, userIdent, postID }) {
           onChange={handleChange}
         />
       </FloatingLabel>
-      <div>
       <div id="catCheckBox">
 
         {categories.map((category) => (
@@ -184,7 +183,6 @@ function PostForm({ obj, userIdent, postID }) {
           </label>
         ))}
       </div>
-
       <Button type="submit" variant="outline-secondary">{obj.id ? 'Update' : 'Create'} Campaign</Button>
     </Form>
   );

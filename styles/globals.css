@@ -26,6 +26,54 @@ body {
   color: black !important;
 }
 
+/* HOME PAGE CSS  */
+.hero-banner {
+  background-size: cover;
+  background-position: center;
+  background-color: #7eaeae;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rem;
+  border-radius: 2%;
+}
+
+.hero-content {
+  text-align: center;
+  color: black;
+}
+
+.hero-title {
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+.hero-description {
+  font-size: 18px;
+  margin-bottom: 24px;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem; 
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+
+/* CARD CSS  */
+
 .card-title {
   color: #262626;
   font-size: 1.5em;
