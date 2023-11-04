@@ -36,11 +36,12 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 10rem;
+  border-radius: 2%;
 }
 
 .hero-content {
   text-align: center;
-  color: #fff;
+  color: black;
 }
 
 .hero-title {
@@ -58,8 +59,8 @@ body {
 .cta-button {
   display: inline-block;
   padding: 12px 24px;
-  background-color: grey;
-  color: #fff;
+  background-color: black;
+  color: white;
   text-decoration: none;
   border-radius: 4px;
   font-weight: bold;
