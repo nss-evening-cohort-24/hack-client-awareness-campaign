@@ -1,13 +1,8 @@
+// import HeroBanner from '../components/HeroBanner';
+
 function Home() {
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    />
+    <div />
   );
 }
 
