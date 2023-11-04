@@ -31,7 +31,7 @@ body {
   background-size: cover;
   background-position: center;
   background-color: #7eaeae;
-  height: 30vh;
+  height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,6 +51,8 @@ body {
 .hero-description {
   font-size: 18px;
   margin-bottom: 24px;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem; 
 }
 
 .cta-button {

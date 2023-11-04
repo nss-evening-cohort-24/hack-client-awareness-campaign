@@ -4,7 +4,7 @@ function Home() {
   return (
     <div className="hero-div">
       <HeroBanner
-        title="Welcome"
+        title="WELCOME..."
         description="Join us in the journey towards a more aware world.
 
       Our mission is to provide support, spread awareness, and create a community where individuals feel safe to share their stories, struggles, and triumphs. Together, we can make a difference by promoting understanding and empathy.
