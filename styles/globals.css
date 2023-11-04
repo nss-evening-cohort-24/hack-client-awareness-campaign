@@ -18,11 +18,11 @@ a {
 }
 
 body {
-  background-color: #BEAA78;
+  background-color: #eadbb6;
 }
 
 #navbar {
-  background-color: #FFE5A0 !important;
+  background-color: #7eaeae !important;
   color: black !important;
 }
 
@@ -115,3 +115,31 @@ body {
   transition: all 0.5s ease-out;
   color: #ffffff;
 }
+#campForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 300px;
+  margin: auto;
+}
+
+#campForm > h2 {
+  color: #364a60 !important;
+  margin: auto;
+  margin-bottom: 10px;
+  
+}
+#catCheckBox {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: space-between;
+}
+#descInput {
+  height: 200px;
+}
+
+  #submitBtn {
+    font-weight: bold !important;
+    margin-top: 10px;
+  }
