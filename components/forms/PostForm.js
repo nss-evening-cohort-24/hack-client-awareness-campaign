@@ -148,6 +148,7 @@ function PostForm({ obj, userIdent, postID }) {
 
       <FloatingLabel controlId="floatingInput3" label="Description" className="mb-3">
         <Form.Control
+          as="textarea"
           id="descInput"
           type="text"
           placeholder="Description"
@@ -172,7 +173,7 @@ function PostForm({ obj, userIdent, postID }) {
         ))}
       </div>
 
-      <Button id="submitBtn" type="submit" variant="outline-secondary">{obj.id ? 'Update' : 'Create'} Campaign</Button>
+      <Button type="submit" variant="outline-secondary">{obj.id ? 'Update' : 'Create'} Campaign</Button>
     </Form>
   );
 }

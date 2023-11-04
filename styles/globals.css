@@ -137,6 +137,9 @@ body {
 }
 #descInput {
   height: 200px;
+  text-wrap: normal;
+  white-space: normal;
+  
 }
 
   #submitBtn {
