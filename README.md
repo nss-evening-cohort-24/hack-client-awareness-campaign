@@ -14,7 +14,23 @@ The Awareness Campaign Creator Web App is a user-friendly platform designed to e
 ![campign form with category options](image-2.png)
 4. Share your campaign on social media.
 
-###WireFrames and ERD 
+#### How to get setup
+1. pull down BE repo 
+
+2. pull down FE repo
+
+3. run visual studio and vsCode
+
+4. run 'dotnet ef database update' in file terminal
+
+5. start https server
+
+6. npm run dev in vsCode
+
+7. sign in!
+
+
+### WireFrames and ERD 
 https://www.figma.com/file/rjyp7PpVr2rQHrzdnP4Y7L/awareness-campaigns?type=design&mode=design&t=HCcmtGS8m8f58Uq5-0
 
 https://dbdiagram.io/d/ERD-practice-63eec5c1296d97641d819c08
@@ -26,6 +42,8 @@ https://dbdiagram.io/d/ERD-practice-63eec5c1296d97641d819c08
 - Node.js
 - PgAdmin4
 - Bootstrap
+- Swagger
+- Entity Framework
 
 ###### Contributors
 - https://github.com/mark-e-brewer

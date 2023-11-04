@@ -192,7 +192,7 @@ body {
   white-space: normal; 
 }
 #postCard{
-  max-height: 300px;
+  max-height: fit-content;
 }
 #postCard > .small-desc{
   overflow: hidden;

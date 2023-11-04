@@ -27,12 +27,12 @@ export default function PostCard({ postObj, onUpdate, userIdent }) {
 
   return (
     <div id="postCard" className="card">
+      <img src={postObj.imageUrl} alt={postObj.postName} width="100" height="100" />
       <p className="card-title">{postObj.postName}</p>
       <div className="cat">{getCat.categories?.map((cat) => <p className="small-dec"> {cat.categoryName} </p>)}</div>
       <p className="small-desc">
         {postObj.description}
       </p>
-      <img src={postObj.imageUrl} alt={postObj.postName} width="100" height="100" />
 
       <div className="buttons">{userIdent === postObj.userId ? (
         <>
