@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
@@ -31,6 +32,8 @@ export default function PostCard({ postObj, onUpdate, userIdent }) {
       <p className="small-desc">
         {postObj.description}
       </p>
+      <img src={postObj.imageUrl} alt={postObj.postName} width="100" height="100" />
+
       <div className="buttons">{userIdent === postObj.userId ? (
         <>
           <Link href={`/posts/edit/${postObj.id}`} passHref>
@@ -53,7 +56,7 @@ PostCard.propTypes = {
   postObj: PropTypes.shape({
     id: PropTypes.number.isRequired,
     userId: PropTypes.number,
-    image: PropTypes.string,
+    imageUrl: PropTypes.string,
     postName: PropTypes.string,
     description: PropTypes.string,
   }).isRequired,

@@ -11,6 +11,7 @@ import { getAllCategories } from '../../api/categoryData';
 const initialState = {
   postName: '',
   description: '',
+  imageUrl: '',
 };
 
 function PostForm({ obj, userIdent, postID }) {
@@ -154,6 +155,16 @@ function PostForm({ obj, userIdent, postID }) {
           value={formInput.description}
           onChange={handleChange}
           required
+        />
+      </FloatingLabel>
+
+      <FloatingLabel controlId="floatingInput2" label="Image URL" className="mb-3">
+        <Form.Control
+          type="text"
+          placeholder="Image URL"
+          name="imageUrl"
+          value={formInput.imageUrl}
+          onChange={handleChange}
         />
       </FloatingLabel>
 
