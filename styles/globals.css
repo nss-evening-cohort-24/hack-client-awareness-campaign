@@ -75,7 +75,9 @@ body {
   display: block;
   position: relative;
   max-width: 300px;
+  min-width: 300px;
   max-height: auto;
+  min-height: 300px;
   background-color: #FFE5A0;
   border-radius: 10px;
   padding: 2em 1.2em;
@@ -134,15 +136,28 @@ body {
   flex-direction: column;
   margin: auto;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 #descInput {
   height: 200px;
   text-wrap: normal;
-  white-space: normal;
-  
+  white-space: normal; 
 }
-
+#postCard{
+  max-height: 300px;
+}
+#postCard > .small-desc{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; 
+          line-clamp: 4; 
+  -webkit-box-orient: vertical;
+  min-height: 96px;
+}
   #submitBtn {
     font-weight: bold !important;
-    margin-top: 10px;
   }
+ .buttons > .btn {
+  background-color: #c1c9d6 !important;
+  color: #262626;
+ }
