@@ -132,7 +132,7 @@ function PostForm({ obj, userIdent, postID }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form id="campForm" onSubmit={handleSubmit}>
       <h2 className="text-white mt-5">{obj.id ? 'Update' : 'Create'} Campaign</h2>
 
       <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3">
@@ -148,6 +148,8 @@ function PostForm({ obj, userIdent, postID }) {
 
       <FloatingLabel controlId="floatingInput3" label="Description" className="mb-3">
         <Form.Control
+          as="textarea"
+          id="descInput"
           type="text"
           placeholder="Description"
           name="description"
@@ -157,7 +159,7 @@ function PostForm({ obj, userIdent, postID }) {
         />
       </FloatingLabel>
 
-      <div>
+      <div id="catCheckBox">
         {categories.map((category) => (
           <label key={category.id}>
             <input
