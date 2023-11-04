@@ -59,8 +59,23 @@ const updatePost = (payload, postId) => new Promise((resolve, reject) => {
     },
     body: JSON.stringify(payload),
   })
-    .then((response) => response.json())
-    .then(resolve)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Request failed with status: ${response.status}`);
+      }
+      return response.text(); // Read the response as text
+    })
+    .then((data) => {
+      if (data) {
+        try {
+          resolve(JSON.parse(data)); // Parse JSON if data is not empty
+        } catch (error) {
+          reject(error); // Handle JSON parsing error
+        }
+      } else {
+        resolve({}); // Resolve with an empty object for empty responses
+      }
+    })
     .catch(reject);
 });
 
